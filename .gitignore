@@ -1,3 +1,7 @@
 
 #ignore .vs folder
 .vs
+
+#ignore x64 folder
+
+x64
