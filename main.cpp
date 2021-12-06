@@ -14,6 +14,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Mesh.h"
+#include "StandartObjects.h"
 
 const unsigned int width = 1280;
 const unsigned int height = 720;
@@ -101,6 +102,10 @@ int main() {
 	Mesh cubeMesh(cubeVertices, indicesCube);
 	Mesh octaedrMesh(octaedrVertices, indicesOctaedr);
 
+	Cube cube;
+	Octaedr octaedr;
+
+
 	glm::mat4 modelCube1 = glm::mat4(1.0f);
 	modelCube1 = glm::scale(modelCube1, glm::vec3(1.0f, 1.0f, 1.0f));
 	modelCube1 = glm::translate(modelCube1, glm::vec3(0.0f, 0.0f, 0.0f));
@@ -119,21 +124,24 @@ int main() {
 		shader.Activate();
 		camera.Inputs(window);
 		camera.UpdateMatrix(45, 1.0f, 450.0f);
-		camera.Matrix(shader, "camMatrix");
+		//camera.Matrix(shader, "camMatrix");
 
 		int modelLoc = glGetUniformLocation(shader.ID, "model");
 
 		model = modelCube1;
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		cubeMesh.Draw(shader, camera);
+		//cubeMesh.Draw(shader, camera);
+		cube.Draw(shader, camera);
 
 		model = modelCube;
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		cubeMesh.Draw(shader, camera);
+		//cubeMesh.Draw(shader, camera);
+		cube.Draw(shader, camera);
 
 		model = modelOctaedr;
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		octaedrMesh.Draw(shader, camera);
+		//octaedrMesh.Draw(shader, camera);
+		octaedr.Draw(shader, camera);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
