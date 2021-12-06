@@ -36,17 +36,17 @@ int main() {
 	//};
 
 
-	GLfloat verticesCube[] =
-	{
-		1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, //0
-		1.0f, -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, //1
-		-1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, //2
-		-1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, //3
-		1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, //0
-		1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, //1
-		-1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, //2
-		-1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, //3
-	};
+	//GLfloat verticesCube[] =
+	//{
+	//	1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, //0
+	//	1.0f, -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, //1
+	//	-1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, //2
+	//	-1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, //3
+	//	1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, //0
+	//	1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, //1
+	//	-1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, //2
+	//	-1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, //3
+	//};
 
 	vector<Vertex> cubeVertices = {
 		{glm::vec3(1.0f, -1.0f, 1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
@@ -59,7 +59,7 @@ int main() {
 		{glm::vec3(-1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)},//0
 	};
 
-	GLuint indicesCube[] =
+	vector<GLuint> indicesCube =
 	{
 		0, 1, 2, // Upper triangle
 		0, 3, 2, // Lower triangle
@@ -73,17 +73,16 @@ int main() {
 		4, 7, 6,
 		1, 2, 5,
 		2, 5, 6
-
 	};
 
-	GLfloat verticesOctaedr[]{
-		0.0f, 0.0f, 1.0f,        1.0f, 0.0f, 0.0f, 0.0f, 0.0f, //0
-		1.0f, 0.0f, 0.0f,       0.0f, 1.0f, 0.0f, 0.0f, 1.0f, //1
-		0.0f, 0.0f, -1.0f,      1.0f, 0.0f, 1.0f, 1.0f, 1.0f, //2
-		-1.0f, 0.0f, 0.0f,       1.0f, 0.0f, 1.0f, 1.0f, 0.0f, //3
-		0.0f, GLfloat(sqrt(2)), 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-		0.0f, GLfloat(-sqrt(2)), 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
-	};
+	//GLfloat verticesOctaedr[]{
+	//	0.0f, 0.0f, 1.0f,        1.0f, 0.0f, 0.0f, 0.0f, 0.0f, //0
+	//	1.0f, 0.0f, 0.0f,       0.0f, 1.0f, 0.0f, 0.0f, 1.0f, //1
+	//	0.0f, 0.0f, -1.0f,      1.0f, 0.0f, 1.0f, 1.0f, 1.0f, //2
+	//	-1.0f, 0.0f, 0.0f,       1.0f, 0.0f, 1.0f, 1.0f, 0.0f, //3
+	//	0.0f, GLfloat(sqrt(2)), 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+	//	0.0f, GLfloat(-sqrt(2)), 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+	//};
 
 	vector<Vertex> octaedrVertices = {
 		{glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)}, //0
@@ -94,7 +93,7 @@ int main() {
 		{glm::vec3(0.0f, GLfloat(-sqrt(2)), 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
 	};
 
-	GLuint indicesOctaedr[]{
+	vector<GLuint> indicesOctaedr = {
 		0, 1, 2,
 		0, 3, 2,
 		0, 4, 1,
@@ -105,7 +104,6 @@ int main() {
 		1, 5, 2,
 		2, 5, 3,
 		3, 5, 0
-
 	};
 
 
@@ -129,7 +127,7 @@ int main() {
 	VAO1.Bind();
 
 	VBO VBO1(cubeVertices);
-	EBO EBO1(indicesCube, sizeof(indicesCube));
+	EBO EBO1(indicesCube);
 
 	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
 	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3*sizeof(float)));
@@ -147,7 +145,7 @@ int main() {
 	VAO2.Bind();
 
 	VBO VBO2(cubeVertices);
-	EBO EBO2(indicesCube, sizeof(indicesCube));
+	EBO EBO2(indicesCube);
 
 	VAO2.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
 	VAO2.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -164,7 +162,7 @@ int main() {
 	VAO3.Bind();
 
 	VBO VBO3(octaedrVertices);
-	EBO EBO3(indicesOctaedr, sizeof(indicesOctaedr));
+	EBO EBO3(indicesOctaedr);
 
 	VAO3.LinkAttrib(VBO3, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
 	VAO3.LinkAttrib(VBO3, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -210,21 +208,21 @@ int main() {
 		model = modelCube;
 		int modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawElements(GL_TRIANGLES, lenIndecesCube, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
 
 		VAO2.Bind();
 		EBO2.Bind();
 		model = modelCube1;
 		modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawElements(GL_TRIANGLES, lenIndecesCube, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
 
 		VAO3.Bind();
 		EBO3.Bind();
 		model = modelOctaedr;
 		modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawElements(GL_TRIANGLES, lenIndecesOctaedr, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, indicesOctaedr.size(), GL_UNSIGNED_INT, 0);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
