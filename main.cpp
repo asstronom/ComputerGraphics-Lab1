@@ -17,6 +17,8 @@
 const unsigned int width = 1280;
 const unsigned int height = 720;
 
+using namespace std;
+
 int main() {
 	//HWND console_window = GetConsoleWindow();
 	//ShowWindow(console_window, false);
@@ -46,6 +48,17 @@ int main() {
 		-1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, //3
 	};
 
+	vector<Vertex> cubeVertices = {
+		{glm::vec3(1.0f, -1.0f, 1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
+		{glm::vec3(1.0f, -1.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)}, //1
+		{glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(1.0f, 1.0f, 0.0f), glm::vec2(1.0f, 1.0f)}, //2
+		{glm::vec3(-1.0f, -1.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(1.0f, 0.0f)}, //3
+		{glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec2(0.0f, 0.0f)}, //0
+		{glm::vec3(1.0f, 1.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(0.0f, 1.0f)}, //1
+		{glm::vec3(-1.0f, 1.0f, -1.0f), glm::vec3(1.0f, 1.0f, 1.0f),glm::vec2(1.0f, 1.0f)}, //2
+		{glm::vec3(-1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)},//0
+	};
+
 	GLuint indicesCube[] =
 	{
 		0, 1, 2, // Upper triangle
@@ -70,6 +83,15 @@ int main() {
 		-1.0f, 0.0f, 0.0f,       1.0f, 0.0f, 1.0f, 1.0f, 0.0f, //3
 		0.0f, GLfloat(sqrt(2)), 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
 		0.0f, GLfloat(-sqrt(2)), 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+	};
+
+	vector<Vertex> octaedrVertices = {
+		{glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)}, //0
+		{glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 1.0f)}, //1
+		{glm::vec3(0.0f, 0.0f, -1.0f),glm::vec3(1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 1.0f)}, //2
+		{glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f)}, //3
+		{glm::vec3(0.0f, GLfloat(sqrt(2)), 0.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f)},
+		{glm::vec3(0.0f, GLfloat(-sqrt(2)), 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
 	};
 
 	GLuint indicesOctaedr[]{
@@ -106,7 +128,7 @@ int main() {
 	VAO VAO1;
 	VAO1.Bind();
 
-	VBO VBO1(verticesCube, sizeof(verticesCube));
+	VBO VBO1(cubeVertices);
 	EBO EBO1(indicesCube, sizeof(indicesCube));
 
 	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
@@ -124,7 +146,7 @@ int main() {
 	VAO VAO2;
 	VAO2.Bind();
 
-	VBO VBO2(verticesCube, sizeof(verticesCube));
+	VBO VBO2(cubeVertices);
 	EBO EBO2(indicesCube, sizeof(indicesCube));
 
 	VAO2.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
@@ -141,7 +163,7 @@ int main() {
 	VAO VAO3;
 	VAO3.Bind();
 
-	VBO VBO3(verticesOctaedr, sizeof(verticesOctaedr));
+	VBO VBO3(octaedrVertices);
 	EBO EBO3(indicesOctaedr, sizeof(indicesOctaedr));
 
 	VAO3.LinkAttrib(VBO3, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
