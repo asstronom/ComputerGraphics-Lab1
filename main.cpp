@@ -13,6 +13,7 @@
 #include "shaderClass.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "Mesh.h"
 
 const unsigned int width = 1280;
 const unsigned int height = 720;
@@ -189,7 +190,8 @@ int main() {
 
 	Texture brickTexture("textures/brick.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 
-	VAO1.Bind();
+	Mesh cubeMesh(cubeVertices, indicesCube);
+	Mesh octaedrMesh(octaedrVertices, indicesOctaedr);
 
 
 	Camera camera(width, height, glm::vec3(0.0, 0.0, 2.0));
@@ -204,26 +206,41 @@ int main() {
 		camera.UpdateMatrix(45, 1.0f, 450.0f);
 		camera.Matrix(shader, "camMatrix");
 
-		VAO1.Bind();
-		//EBO1.Bind();
-		model = modelCube;
 		int modelLoc = glGetUniformLocation(shader.ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
 
-		VAO2.Bind();
-		//EBO2.Bind();
+		//VAO1.Bind();
+		////EBO1.Bind();
+		//model = modelCube;
+		//
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
+
+		//VAO2.Bind();
+		////EBO2.Bind();
+		//model = modelCube1;
+		//modelLoc = glGetUniformLocation(shader.ID, "model");
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
+
+		//VAO3.Bind();
+		////EBO3.Bind();
+		//model = modelOctaedr;
+		//modelLoc = glGetUniformLocation(shader.ID, "model");
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawElements(GL_TRIANGLES, indicesOctaedr.size(), GL_UNSIGNED_INT, 0);
+
 		model = modelCube1;
-		modelLoc = glGetUniformLocation(shader.ID, "model");
+		//modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
+		cubeMesh.Draw(shader, camera);
 
-		VAO3.Bind();
-		//EBO3.Bind();
-		model = modelOctaedr;
-		modelLoc = glGetUniformLocation(shader.ID, "model");
+		model = modelCube;
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawElements(GL_TRIANGLES, indicesOctaedr.size(), GL_UNSIGNED_INT, 0);
+		cubeMesh.Draw(shader, camera);
+
+		model = modelOctaedr;
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		octaedrMesh.Draw(shader, camera);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
