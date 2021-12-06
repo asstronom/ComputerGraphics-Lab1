@@ -25,3 +25,4 @@ void Mesh::Draw(Shader& shader, Camera& camera) {
 	camera.Matrix(shader, "camMatrix");
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 }
+
