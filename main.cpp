@@ -201,24 +201,25 @@ int main() {
 
 		shader.Activate();
 		camera.Inputs(window);
-		camera.Matrix(45.0f, 0.1f, 100.0f, shader, "camMatrix");
+		camera.UpdateMatrix(45, 1.0f, 450.0f);
+		camera.Matrix(shader, "camMatrix");
 
 		VAO1.Bind();
-		EBO1.Bind();
+		//EBO1.Bind();
 		model = modelCube;
 		int modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
 
 		VAO2.Bind();
-		EBO2.Bind();
+		//EBO2.Bind();
 		model = modelCube1;
 		modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawElements(GL_TRIANGLES, indicesCube.size(), GL_UNSIGNED_INT, 0);
 
 		VAO3.Bind();
-		EBO3.Bind();
+		//EBO3.Bind();
 		model = modelOctaedr;
 		modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
